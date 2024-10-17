@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="en">
+    <head>
+        <title>Bootstrap Example</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="http://login2explore.com/jpdb/resources/js/0.0.3/jpdb-commons.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <h2>Student Enrollment Form</h2>
+            <form id="stuForm" method="post">
+                <div class="form-group">
+                    <label>Roll No:</label>
+                    <input type="number" class="form-control" name="stuRoll" id="stuRoll"
+                           placeholder="Enter Roll No" required>
+                </div>
+                <div class="form-group">
+                    <label for="stuName">Student Name:</label>
+                    <input type="text" class="form-control" id="stuName"
+                           placeholder="Enter Name" name="stuName">
+                </div>
+                <div class="form-group">
+                    <label for="stuClass">Class:</label>
+                    <input type="text" class="form-control" id="stuClass"
+                           placeholder="Enter Class" name="stuClass">
+                </div>
+                <div class="form-group">
+                    <label for="stuDob">DOB:</label>
+                    <input type="date" class="form-control" id="stuDob" placeholder="Enter Date Of Birth" name="stuDob">
+                </div>
+                <div class="form-group">
+                    <label for="stuAdd">Address:</label>
+                    <input type="text" class="form-control" id="stuAdd"
+                           placeholder="Enter Address" name="stuClass">
+                </div>
+                <div class="form-group">
+                    <label for="stuEnroll">Enrollment Date:</label>
+                    <input type="date" class="form-control" id="stuEnroll"
+                           placeholder="Enter Enrollment Date" name="stuEnroll">
+                </div>
+                <input type="button" class="btn btn-primary" id="empSave" value="Save"
+                       onclick="saveEmployee();">
+            </form>
+        </div>
+        <script>
+            $("#stuRoll").focus();
+            function validateAndGetFormData() {
+                var stuRollVar = $("#stuRoll").val();
+                if (stuRollVar === "") {
+                    alert("Roll No Required Value");
+                    $("#stuRoll").focus();
+                    return "";
+                }
+                var stuNameVar = $("#stuName").val();
+                if (stuNameVar === "") {
+                    alert(" Name is Required Value");
+                    $("#stuName").focus();
+                    return "";
+                }
+                var stuClassVar = $("#stuClass").val();
+                if (stuClassVar === "") {
+                    alert("Class is Required Value");
+                    $("#stuClass").focus();
+                    return "";
+                }
+                var stuDobVar = $("#stuDob").val();
+                if (stuDobVar === "") {
+                    alert("DOB is Required Value");
+                    $("#stuDob").focus();
+                    return "";
+                }
+                var stuAddVar = $("#stuAdd").val();
+                if (stuAddVar === "") {
+                    alert("Address is Required Value");
+                    $("#stuAdd").focus();
+                    return "";
+                }
+                var stuEnrollVar = $("#stuEnroll").val();
+                if (stuEnrollVar === "") {
+                    alert("Enrollment date is Required Value");
+                    $("#stuEnroll").focus();
+                    return "";
+                }
+                var jsonStrObj = {
+                    stuRoll: stuRollVar,
+                    stuName: stuNameVar,
+                    stuClass: stuClassVar,
+                    stuDob: stuDobVar,
+                    stuAdd: stuAddVar,
+                    stuEnroll: stuEnrollVar
+                    
+                };
+                return JSON.stringify(jsonStrObj);
+            }
+            // This method is used to create PUT Json request.
+            
+            function resetForm() {
+                $("#stuRoll").val("");
+                $("#stuName").val("");
+                $("#stuClass").val("");
+                $("#stuDob").val("");
+                $("#stuAdd").val("");
+                $("#stuEnroll").val("");
+                $("#stuRoll").focus();
+            }
+
+            function saveEmployee()
+            {
+                var jsonStr = validateAndGetFormData();
+                if (jsonStr === "") {
+                    return;
+                }
+                var putReqStr = createPUTRequest("90934501|-31949222999063419|90962821",
+                        jsonStr, "STUDENT-TABLE", "SCHOOL-DB");
+                alert(putReqStr);
+                jQuery.ajaxSetup({async: false});
+                var resultObj = executeCommandAtGivenBaseUrl(putReqStr,
+                        "http://api.login2explore.com:5577", "/api/iml");
+                alert(JSON.stringify(resultObj));
+                jQuery.ajaxSetup({async: true});
+                resetForm();
+            }
+        </script>
+    </body>
+</html>
