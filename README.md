@@ -28,7 +28,7 @@ The Student Enrollment Form is a web application that allows students to enroll 
 
 ### Navigate To Project Directory
 ```bash
-cd student-enrollment-form
+cd student-enrollment-form```
 ### Install dependencies (if applicable):
 ```bash
 npm install```
