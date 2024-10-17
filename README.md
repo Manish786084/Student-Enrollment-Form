@@ -13,8 +13,6 @@ The Student Enrollment Form is a web application that allows students to enroll 
 - HTML
 - Bootstrap
 - JavaScript
-- [Any back-end technology if applicable, e.g., Node.js, PHP, etc.]
-- [Database technology if applicable, e.g., MongoDB, MySQL, etc.]
 
 ## Installation
 
@@ -27,13 +25,13 @@ The Student Enrollment Form is a web application that allows students to enroll 
    git clone https://github.com/yourusername/student-enrollment-form.git
 
 ### Navigate To Project Directory
-```bash
+```
 cd student-enrollment-form```
 ### Install dependencies (if applicable):
-```bash
+```
 npm install```
 ### Start the application:
-```bash
+```
 npm start```
 
 ### Usage
