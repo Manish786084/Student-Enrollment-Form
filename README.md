@@ -31,10 +31,10 @@ The Student Enrollment Form is a web application that allows students to enroll 
 cd student-enrollment-form
 ### Install dependencies (if applicable):
 ```bash
-npm install
+npm install```
 ### Start the application:
 ```bash
-npm start
+npm start```
 
 ### Usage
 Open your web browser and navigate to http://localhost:3000 (or the relevant URL).
